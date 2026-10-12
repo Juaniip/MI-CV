@@ -1,0 +1,5 @@
+# Archivos que no se sirven como assets del sitio
+anime
+README.md
+wrangler.jsonc
+.gitignore
