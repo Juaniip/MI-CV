@@ -26,8 +26,8 @@
     --line-strong: #2f3949;
     --text: #e7ebf0;
     --muted: #8d97a5;
-    --accent: #c4f542;
-    --accent-dim: rgba(196, 245, 66, 0.12);
+    --accent: #ff8a3d;
+    --accent-dim: rgba(255, 138, 61, 0.12);
     --accent-2: #5fd4ff;
     --font-main: 'Space Grotesk', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
@@ -58,7 +58,7 @@
     z-index: 0;
     background:
       radial-gradient(1200px 600px at 85% -10%, rgba(95, 212, 255, 0.06), transparent 60%),
-      radial-gradient(900px 500px at -10% 30%, rgba(196, 245, 66, 0.05), transparent 60%);
+      radial-gradient(900px 500px at -10% 30%, rgba(255, 138, 61, 0.05), transparent 60%);
   }
 
   a { color: var(--accent); text-decoration: none; }
@@ -321,6 +321,24 @@
     margin-bottom: 40px;
   }
 
+  .hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin: -22px 0 36px;
+  }
+
+  .hero-highlights li {
+    padding: 6px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: rgba(16, 20, 27, 0.8);
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .hero-highlights b { color: var(--text); font-weight: 600; }
+
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
@@ -437,7 +455,7 @@
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
-    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(196, 245, 66, 0.07), transparent 45%);
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 138, 61, 0.07), transparent 45%);
   }
 
   .card.spot:hover::after { opacity: 1; }
@@ -780,7 +798,98 @@
     color: var(--text);
   }
 
-  /* ---------- Cursos y campo ---------- */
+  .project-points { margin: -4px 0 20px; }
+
+  .project-desc code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--accent-2);
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .project-links a:hover { text-decoration: underline; }
+
+  .project-card { display: flex; flex-direction: column; }
+  .project-card .project-tech-list { margin-top: auto; }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 28px;
+    border-color: var(--line-strong);
+  }
+
+  .featured-main { display: flex; flex-direction: column; }
+
+  @media (min-width: 900px) {
+    .project-card.featured { grid-template-columns: 1.5fr 1fr; align-items: start; }
+  }
+
+  .phases {
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-2);
+  }
+
+  .phases-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .phases-title span { color: var(--accent); }
+
+  .phase-list { list-style: none; display: grid; gap: 10px; }
+
+  .phase-list li {
+    display: grid;
+    grid-template-columns: 22px 1fr 70px;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .phase-list li.done,
+  .phase-list li.partial { color: var(--text); }
+
+  .ph-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .ph-bar {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--line);
+    overflow: hidden;
+  }
+
+  .ph-bar i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+    transform-origin: left center;
+    transform: scaleX(var(--p));
+  }
+
+  .phase-list li.partial .ph-bar i { background: var(--accent-2); }
+
+  .motion .ph-bar i { transform: scaleX(0); }
+
+  /* ---------- Cursos ---------- */
   .courses-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
@@ -796,22 +905,6 @@
   }
 
   .courses-list li:hover { border-left-color: var(--accent); background: var(--surface-2); }
-
-  .field-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .field-box {
-    padding: 10px 18px;
-    border: 1px dashed var(--line-strong);
-    border-radius: 999px;
-    font-size: 0.92rem;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-
-  .field-box:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ---------- Deportes ---------- */
   .sports {
@@ -895,10 +988,10 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#header"><span class="num">00.</span>Inicio</a></li>
       <li><a href="#profile"><span class="num">01.</span>Sobre Mí</a></li>
-      <li><a href="#education"><span class="num">02.</span>Educación</a></li>
-      <li><a href="#experience"><span class="num">03.</span>Experiencia</a></li>
+      <li><a href="#experience"><span class="num">02.</span>Experiencia</a></li>
+      <li><a href="#projects"><span class="num">03.</span>Proyectos</a></li>
       <li><a href="#skills"><span class="num">04.</span>Skills</a></li>
-      <li><a href="#projects"><span class="num">05.</span>Proyectos</a></li>
+      <li><a href="#education"><span class="num">05.</span>Educación</a></li>
       <li><a href="#contact"><span class="num">06.</span>Contacto</a></li>
     </ul>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
@@ -912,10 +1005,10 @@
     <ul>
       <li><a href="#header"><span class="num">00.</span>Inicio</a></li>
       <li><a href="#profile"><span class="num">01.</span>Sobre Mí</a></li>
-      <li><a href="#education"><span class="num">02.</span>Educación</a></li>
-      <li><a href="#experience"><span class="num">03.</span>Experiencia</a></li>
+      <li><a href="#experience"><span class="num">02.</span>Experiencia</a></li>
+      <li><a href="#projects"><span class="num">03.</span>Proyectos</a></li>
       <li><a href="#skills"><span class="num">04.</span>Skills</a></li>
-      <li><a href="#projects"><span class="num">05.</span>Proyectos</a></li>
+      <li><a href="#education"><span class="num">05.</span>Educación</a></li>
       <li><a href="#contact"><span class="num">06.</span>Contacto</a></li>
     </ul>
     <p class="menu-foot">Juan Ignacio Wilt</p>
@@ -929,8 +1022,13 @@
         <p class="hero-prompt"><span class="dot"></span><b>juaniwilt@utn-frlp</b>:~$ <span id="whoami">whoami</span></p>
         <p class="hero-greeting">Hola, mi nombre es</p>
         <h1 class="hero-name" id="heroName">Juan Ignacio Wilt.</h1>
-        <p class="hero-role" id="heroRole">Estudiante de Ingeniería en Sistemas | Ciberseguridad</p>
+        <p class="hero-role" id="heroRole">Analista en Sistemas | Ciberseguridad e Infraestructura</p>
         <p class="hero-location">📍 La Plata, Buenos Aires, Argentina</p>
+        <ul class="hero-highlights" aria-label="Destacados">
+          <li>Pasante en <b>YPF · Y-TEC</b></li>
+          <li><b>Mejor promedio</b> · distinción CPCIBA</li>
+          <li><b>Finalista</b> QuantumJam 2026</li>
+        </ul>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary" data-magnetic>Contactar</a>
           <a href="#projects" class="btn btn-ghost" data-magnetic>Ver proyectos</a>
@@ -947,14 +1045,18 @@
       <div class="about">
         <div class="about-text">
           <p data-reveal>
-            Estudiante de <strong>Ingeniería en Sistemas de Información</strong> en la UTN FRLP,
-            cursando cuarto año. Apasionado por la <strong>ciberseguridad</strong> y la protección
-            de la información.
+            Soy <strong>Analista Universitario en Sistemas</strong> por la UTN FRLP, egresado con la distinción
+            al mejor promedio, y estudiante avanzado de <strong>Ingeniería en Sistemas de Información</strong>.
+            Hoy hago mi pasantía en <strong>YPF · Y-TEC</strong> como analista de datos.
           </p>
           <p data-reveal>
-            Me interesa profundamente comprender cómo funcionan los sistemas desde su base
-            para hacerlos más seguros y eficientes. Me considero una persona responsable,
-            curiosa y con un enfoque práctico para la resolución de problemas técnicos complejos.
+            Me apasiona la <strong>ciberseguridad</strong> y entender los sistemas desde su base: lidero
+            LINSI-OS, una distribución Linux construida desde código fuente, y despliego mis propios
+            proyectos sobre infraestructura self-hosted con Docker, Raspberry Pi y Cloudflare Zero Trust.
+          </p>
+          <p data-reveal>
+            Me considero una persona responsable, curiosa y con un enfoque práctico para la resolución
+            de problemas técnicos complejos.
           </p>
         </div>
         <div class="card terminal" data-reveal aria-hidden="true">
@@ -962,9 +1064,10 @@
           <div class="terminal-body">
             <p><span class="p">$</span> cat perfil.json</p>
             <p>{</p>
-            <p>&nbsp;&nbsp;<span class="k">"carrera"</span>: <span class="v">"Ing. en Sistemas"</span>,</p>
-            <p>&nbsp;&nbsp;<span class="k">"año"</span>: <span class="v">4</span>,</p>
-            <p>&nbsp;&nbsp;<span class="k">"foco"</span>: <span class="v">"ciberseguridad"</span>,</p>
+            <p>&nbsp;&nbsp;<span class="k">"título"</span>: <span class="v">"Analista en Sistemas"</span>,</p>
+            <p>&nbsp;&nbsp;<span class="k">"cursando"</span>: <span class="v">"Ing. en Sistemas"</span>,</p>
+            <p>&nbsp;&nbsp;<span class="k">"foco"</span>: <span class="v">["ciberseguridad", "linux", "infra"]</span>,</p>
+            <p>&nbsp;&nbsp;<span class="k">"inglés"</span>: <span class="v">"C1"</span>,</p>
             <p>&nbsp;&nbsp;<span class="k">"base"</span>: <span class="v">"La Plata, AR"</span></p>
             <p>}</p>
           </div>
@@ -972,8 +1075,227 @@
       </div>
     </section>
 
+    <section class="section" id="experience">
+      <div class="section-head"><span class="section-index">02.</span><h2>Experiencia</h2><span class="section-rule"></span></div>
+      <div class="exp-grid">
+        <article class="card spot exp-item" data-reveal>
+          <span class="chip">2026 - Actualidad</span>
+          <h3>YPF · Y-TEC</h3>
+          <p class="exp-role">Pasante · Analista de Datos en la Gerencia de Portafolio y Capacidades</p>
+        </article>
+        <article class="card spot exp-item" data-reveal>
+          <span class="chip">2025 - 2026</span>
+          <h3>Sistema de Gestión para el LOMCEM – CONICET</h3>
+          <p class="exp-role">Analista y desarrollador de sistemas · equipo de 5</p>
+          <ul class="bullets">
+            <li>Sistema a medida que automatiza el análisis de materiales biodegradables: carga de análisis, registros e historial científico, con foco en la integridad de los datos.</li>
+            <li>Control de accesos, gestión administrativa e infraestructura.</li>
+            <li>Entrega en el laboratorio y capacitación a los investigadores que lo usan.</li>
+            <li>Proyecto final del Seminario Integrador del título de Analista (UTN FRLP).</li>
+          </ul>
+        </article>
+        <article class="card spot exp-item" data-reveal>
+          <span class="chip">2024 - 2026</span>
+          <h3>Laboratorio LINSI – UTN FRLP</h3>
+          <p class="exp-role">Pasante → Profesor / Instructor</p>
+          <ul class="bullets">
+            <li>Fundador y líder del proyecto LINSI-OS (ver Proyectos).</li>
+            <li>Instructor en la capacitación de ciberseguridad del laboratorio (2025-2026).</li>
+            <li>Análisis básico de vulnerabilidades y aplicación de buenas prácticas de seguridad informática.</li>
+            <li>Mentoría técnica a estudiantes y documentación de procesos y configuraciones.</li>
+          </ul>
+        </article>
+        <article class="card spot exp-item" data-reveal>
+          <span class="chip">2023 - 2024</span>
+          <h3>Beer Coin</h3>
+          <ul class="bullets">
+            <li>Atención al cliente y Ventas</li>
+            <li>Manejo de efectivo</li>
+            <li>Control de inventario</li>
+            <li>Después desarrollé la web de su franquicia (ver Proyectos).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head"><span class="section-index">03.</span><h2>Proyectos</h2><span class="section-rule"></span></div>
+      <div class="projects-grid">
+        <article class="card spot project-card featured" data-reveal>
+          <div class="featured-main">
+            <p class="project-overline">Sistemas operativos · Founder &amp; Lead</p>
+            <h3 class="project-title">LINSI-OS</h3>
+            <div class="project-desc">
+              <p>Distribución GNU/Linux construida desde código fuente con la metodología Linux From Scratch, para docencia, investigación y desarrollo en el Laboratorio LINSI. Cada componente se descarga, se verifica contra su checksum oficial y se compila para un target propio (<code>x86_64-linsi-linux-gnu</code>).</p>
+            </div>
+            <ul class="bullets project-points">
+              <li>Kernel endurecido: Lockdown, KASLR, Secure Boot y BTRFS.</li>
+              <li>Seguridad: LUKS2 + Argon2id, SELinux, nftables, auditd, PAM con FIDO2 y DNS-over-TLS.</li>
+              <li>Paquetes con apk-tools y repositorio firmado; escritorio Wayland + KDE Plasma 6.</li>
+              <li>Builds en contenedores (Podman / Docker), un script por fase. Equipo de 3.</li>
+            </ul>
+            <ul class="project-tech-list">
+              <li>Bash</li>
+              <li>Linux From Scratch</li>
+              <li>GCC / Clang</li>
+              <li>systemd</li>
+              <li>SELinux</li>
+              <li>Podman</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Juaniip/LINSI-OS" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </div>
+          <div class="phases" aria-label="Estado del proyecto por fase">
+            <p class="phases-title">Estado por fase · <span>en desarrollo</span></p>
+            <ol class="phase-list">
+              <li class="done"><span class="ph-num">0</span><span class="ph-name">Toolchain cruzado</span><span class="ph-bar"><i style="--p:1"></i></span></li>
+              <li class="done"><span class="ph-num">1</span><span class="ph-name">Kernel endurecido</span><span class="ph-bar"><i style="--p:1"></i></span></li>
+              <li class="done"><span class="ph-num">2</span><span class="ph-name">Espacio de usuario</span><span class="ph-bar"><i style="--p:1"></i></span></li>
+              <li class="done"><span class="ph-num">3</span><span class="ph-name">Seguridad</span><span class="ph-bar"><i style="--p:1"></i></span></li>
+              <li class="done"><span class="ph-num">4</span><span class="ph-name">Comunicaciones</span><span class="ph-bar"><i style="--p:1"></i></span></li>
+              <li class="partial"><span class="ph-num">5</span><span class="ph-name">Paquetes y repositorio</span><span class="ph-bar"><i style="--p:.6"></i></span></li>
+              <li class="partial"><span class="ph-num">6</span><span class="ph-name">Escritorio KDE Plasma</span><span class="ph-bar"><i style="--p:.7"></i></span></li>
+              <li><span class="ph-num">7</span><span class="ph-name">Contenedores</span><span class="ph-bar"><i style="--p:0"></i></span></li>
+              <li><span class="ph-num">8</span><span class="ph-name">ISO e instalador</span><span class="ph-bar"><i style="--p:0"></i></span></li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="card spot project-card" data-reveal data-tilt>
+          <p class="project-overline">Automatización · Self-hosting</p>
+          <h3 class="project-title">AutoPublisher</h3>
+          <div class="project-desc">
+            <p>Panel web para preparar, programar y publicar videos y Shorts en varios canales de YouTube: guiones con Gemini, calendario de publicación, subida por la API de YouTube y backup automático en Google Drive.</p>
+          </div>
+          <ul class="bullets project-points">
+            <li>Cola de subidas con reintentos y manejo de la cuota diaria de la API.</li>
+            <li>Seguridad en dos capas: Cloudflare Access + login propio (scrypt, CSRF, CSP/HSTS).</li>
+            <li>Corre en una Raspberry Pi con Docker (sin root, solo lectura) detrás de un Cloudflare Tunnel.</li>
+          </ul>
+          <ul class="project-tech-list">
+            <li>Node.js</li>
+            <li>SQLite</li>
+            <li>YouTube Data API</li>
+            <li>Gemini API</li>
+            <li>Docker</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/Juaniip/AutoPublisher" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="card spot project-card" data-reveal data-tilt>
+          <p class="project-overline">Desarrollo web · Cliente real</p>
+          <h3 class="project-title">Web de la Franquicia Beercoin</h3>
+          <div class="project-desc">
+            <p>Sitio para potenciales inversores de la primera red de cerveza inteligente, donde el usuario arma visualmente su modelo de franquicia (Food Truck, Parador o Clásico).</p>
+          </div>
+          <ul class="bullets project-points">
+            <li>Interfaz interactiva con React y Framer Motion, estética oscura con acentos neón.</li>
+            <li>Docker (Nginx Alpine) sobre una Raspberry Pi 5, publicado con Cloudflare Zero Trust: SSL y protección DDoS sin exponer la red local.</li>
+          </ul>
+          <ul class="project-tech-list">
+            <li>React</li>
+            <li>Framer Motion</li>
+            <li>Tailwind CSS</li>
+            <li>Docker</li>
+            <li>Cloudflare</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://franquicia.beer-coin.net" target="_blank" rel="noopener noreferrer">Sitio ↗</a>
+            <a href="https://github.com/Juaniip/Franquicia-BeerCoin-" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="card spot project-card" data-reveal data-tilt>
+          <p class="project-overline">Mobile · Seguridad</p>
+          <h3 class="project-title">GAL Security</h3>
+          <div class="project-desc">
+            <p>Aplicación móvil para la administración remota y la auditoría de seguridad de infraestructuras privadas con contenedores Docker, sobre una arquitectura Zero Trust.</p>
+          </div>
+          <ul class="project-tech-list">
+            <li>TypeScript</li>
+            <li>Docker</li>
+            <li>Zero Trust</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/Juaniip/Desarrollo-Mobile-GAL-Security" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="card spot project-card" data-reveal data-tilt>
+          <p class="project-overline">Desarrollo de Software</p>
+          <h3 class="project-title">Discord Audit Bot &amp; Dashboard DBMS</h3>
+          <div class="project-desc">
+            <p>Ecosistema Bot + Web integrado con Discord API. Dashboard con autenticación OAuth2 que permite a los usuarios visualizar auditorías en tiempo real de los servidores donde son administradores.</p>
+          </div>
+          <ul class="project-tech-list">
+            <li>Discord.js</li>
+            <li>Node.js</li>
+            <li>OAuth2</li>
+            <li>React</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head"><span class="section-index">04.</span><h2>Lenguajes de Programación</h2><span class="section-rule"></span></div>
+      <div class="playground" id="playground" data-reveal>
+        <div class="skill-pill">C</div>
+        <div class="skill-pill">C++</div>
+        <div class="skill-pill">Python</div>
+        <div class="skill-pill">JavaScript</div>
+        <div class="skill-pill">TypeScript</div>
+        <div class="skill-pill">Bash</div>
+        <div class="skill-pill">PowerShell</div>
+        <div class="skill-pill">SQL</div>
+      </div>
+      <div class="playground-foot" id="playgroundFoot" hidden>
+        <span>↔ arrastralos y soltalos</span>
+        <button type="button" class="text-btn" id="resetPills">ordenar</button>
+      </div>
+    </section>
+
+    <section class="section" id="technologies">
+      <div class="section-head"><span class="section-index">04.1</span><h2>Tecnologías &amp; Herramientas</h2><span class="section-rule"></span></div>
+      <div class="filters" id="techFilters" role="group" aria-label="Filtrar tecnologías" data-reveal>
+        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Todas</button>
+        <button type="button" class="filter" data-filter="os" aria-pressed="false">OS</button>
+        <button type="button" class="filter" data-filter="net" aria-pressed="false">Redes &amp; Seguridad</button>
+        <button type="button" class="filter" data-filter="tools" aria-pressed="false">Infra &amp; DevOps</button>
+        <button type="button" class="filter" data-filter="frontend" aria-pressed="false">Frontend</button>
+        <button type="button" class="filter" data-filter="db" aria-pressed="false">Backend &amp; BBDD</button>
+      </div>
+      <div class="tech-grid" id="techGrid">
+        <div class="card spot tech-card" data-cat="os" data-reveal><span class="tech-name">Linux</span><span class="tech-type">OS</span></div>
+        <div class="card spot tech-card" data-cat="os" data-reveal><span class="tech-name">Linux From Scratch</span><span class="tech-type">OS</span></div>
+        <div class="card spot tech-card" data-cat="os" data-reveal><span class="tech-name">Windows</span><span class="tech-type">OS</span></div>
+        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">SSH</span><span class="tech-type">Networking / Security</span></div>
+        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">TCP/IP</span><span class="tech-type">Networking</span></div>
+        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">Firewalls</span><span class="tech-type">Security</span></div>
+        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">Port Scanning</span><span class="tech-type">Security</span></div>
+        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">Cloudflare Zero Trust</span><span class="tech-type">Security</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Docker</span><span class="tech-type">DevOps</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Podman</span><span class="tech-type">DevOps</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Portainer</span><span class="tech-type">DevOps</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Nginx</span><span class="tech-type">Infra</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Raspberry Pi</span><span class="tech-type">Infra / Self-hosting</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Git</span><span class="tech-type">Tools</span></div>
+        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">UML</span><span class="tech-type">Design</span></div>
+        <div class="card spot tech-card" data-cat="frontend" data-reveal><span class="tech-name">React + Vite</span><span class="tech-type">Frontend</span></div>
+        <div class="card spot tech-card" data-cat="frontend" data-reveal><span class="tech-name">Tailwind CSS</span><span class="tech-type">Frontend</span></div>
+        <div class="card spot tech-card" data-cat="frontend" data-reveal><span class="tech-name">HTML &amp; CSS</span><span class="tech-type">Frontend</span></div>
+        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">Node.js</span><span class="tech-type">Backend</span></div>
+        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">SQLite</span><span class="tech-type">BBDD</span></div>
+        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">MySQL</span><span class="tech-type">BBDD</span></div>
+        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">SQL Server Express</span><span class="tech-type">BBDD</span></div>
+      </div>
+    </section>
+
     <section class="section" id="education">
-      <div class="section-head"><span class="section-index">02.</span><h2>Educación</h2><span class="section-rule"></span></div>
+      <div class="section-head"><span class="section-index">05.</span><h2>Educación</h2><span class="section-rule"></span></div>
       <div class="timeline" id="timeline">
         <span class="timeline-track" aria-hidden="true"></span>
         <span class="timeline-fill" id="timelineFill" aria-hidden="true"></span>
@@ -984,7 +1306,18 @@
           </div>
           <p class="tl-degree">Ingeniería en Sistemas de Información (Plan 2023)</p>
           <ul class="bullets">
-            <li>4to Año en curso</li>
+            <li>Estudiante avanzado</li>
+          </ul>
+        </div>
+        <div class="card spot tl-item" data-reveal>
+          <div class="tl-head">
+            <h3>UTN FRLP</h3>
+            <span class="chip">2026</span>
+          </div>
+          <p class="tl-degree">Analista Desarrollador Universitario de Sistemas de Información</p>
+          <ul class="bullets">
+            <li>Título intermedio de la carrera</li>
+            <li>Distinción del CPCIBA al mejor promedio</li>
           </ul>
         </div>
         <div class="card spot tl-item" data-reveal>
@@ -1021,70 +1354,42 @@
       </div>
     </section>
 
-    <section class="section" id="experience">
-      <div class="section-head"><span class="section-index">03.</span><h2>Experiencia Laboral</h2><span class="section-rule"></span></div>
-      <div class="exp-grid">
-        <article class="card spot exp-item" data-reveal>
-          <span class="chip">2026 - Actualidad</span>
-          <h3>Pasantía YPF - YTEC</h3>
-          <p class="exp-role">Analista de Datos en la Gerencia de Portafolio y Capacidades</p>
-        </article>
-        <article class="card spot exp-item" data-reveal>
-          <span class="chip">2025</span>
-          <h3>Sistema de Gestión CONICET</h3>
-          <p class="exp-role">Analista de sistemas de información</p>
-          <ul class="bullets">
-            <li>Desarrollo (2025-2026) de un sistema personalizado para la carga de análisis, registros e historial científico, con enfoque en la integridad de datos.</li>
-            <li>Laboratorio LOMCEM | CONICET</li>
-            <li>Control de Accesos</li>
-            <li>Gestión Admin</li>
-            <li>Infraestructura</li>
-          </ul>
-        </article>
-        <article class="card spot exp-item" data-reveal>
-          <span class="chip">2024 - 2026</span>
-          <h3>Laboratorio LINSI – UTN FRLP</h3>
-          <p class="exp-role">Pasante → Profesor / Instructor</p>
-          <ul class="bullets">
-            <li>Participación en actividades de ciberseguridad y análisis de sistemas en entorno de laboratorio.</li>
-            <li>Análisis básico de vulnerabilidades y aplicación de buenas prácticas de seguridad informática.</li>
-            <li>Acompañamiento y mentoría técnica a estudiantes en prácticas de laboratorio.</li>
-            <li>Comunicación y documentación técnica de procesos y configuraciones.</li>
-            <li>Trabajo colaborativo en equipos técnicos y académicos.</li>
-          </ul>
-        </article>
-        <article class="card spot exp-item" data-reveal>
-          <span class="chip">2023 - 2024</span>
-          <h3>Beer Coin</h3>
-          <ul class="bullets">
-            <li>Atención al cliente y Ventas</li>
-            <li>Manejo de efectivo</li>
-            <li>Control de inventario</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="activities">
-      <div class="section-head"><span class="section-index">03.1</span><h2>Actividades Ciberseguridad</h2><span class="section-rule"></span></div>
+    <section class="section" id="achievements">
+      <div class="section-head"><span class="section-index">05.1</span><h2>Logros y Actividades</h2><span class="section-rule"></span></div>
       <div class="activity-list">
         <div class="activity" data-reveal>
           <span class="idx">[01]</span>
+          <div>
+            <h3>Finalista – QuantumJam 2026</h3>
+            <p>Hackathon de computación cuántica de Computer Society ITBA (Qiskit Fall Fest). Entre los 4 equipos finalistas: calcular la energía de una molécula mientras se rompe con una computadora cuántica simulada.</p>
+            <span class="chip">ITBA · 2026</span>
+          </div>
+        </div>
+        <div class="activity" data-reveal>
+          <span class="idx">[02]</span>
+          <div>
+            <h3>Distinción al mejor promedio – CPCIBA</h3>
+            <p>Otorgada junto con el título de Analista Desarrollador Universitario de Sistemas de Información.</p>
+            <span class="chip">UTN FRLP · 2026</span>
+          </div>
+        </div>
+        <div class="activity" data-reveal>
+          <span class="idx">[03]</span>
+          <div>
+            <h3>Expositor – Jornadas de Formación Profesional 2025</h3>
+            <p>Charla sobre configuraciones Anti-Scraping, a partir de una auditoría de seguridad real sobre una plataforma de e-learning.</p>
+            <span class="chip">Laboratorio LINSI – UTN FRLP</span>
+          </div>
+        </div>
+        <div class="activity" data-reveal>
+          <span class="idx">[04]</span>
           <div>
             <h3>CNEISI – Área Ciberseguridad</h3>
             <p>Participación activa en el Laboratorio LINSI.</p>
           </div>
         </div>
         <div class="activity" data-reveal>
-          <span class="idx">[02]</span>
-          <div>
-            <h3>Charla Magistral</h3>
-            <p>Configuraciones Anti-Scraping basadas en auditoría de seguridad.</p>
-            <span class="chip">Laboratorio LINSI – UTN FRLP</span>
-          </div>
-        </div>
-        <div class="activity" data-reveal>
-          <span class="idx">[03]</span>
+          <span class="idx">[05]</span>
           <div>
             <h3>Rally Latinoamericano de Innovación</h3>
             <p>Edición 2024</p>
@@ -1093,73 +1398,8 @@
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <div class="section-head"><span class="section-index">04.</span><h2>Lenguajes de Programación</h2><span class="section-rule"></span></div>
-      <div class="playground" id="playground" data-reveal>
-        <div class="skill-pill">C</div>
-        <div class="skill-pill">C++</div>
-        <div class="skill-pill">Python</div>
-        <div class="skill-pill">JavaScript</div>
-        <div class="skill-pill">Bash</div>
-        <div class="skill-pill">PowerShell</div>
-        <div class="skill-pill">SQL</div>
-      </div>
-      <div class="playground-foot" id="playgroundFoot" hidden>
-        <span>↔ arrastralos y soltalos</span>
-        <button type="button" class="text-btn" id="resetPills">ordenar</button>
-      </div>
-    </section>
-
-    <section class="section" id="technologies">
-      <div class="section-head"><span class="section-index">04.1</span><h2>Tecnologías &amp; Herramientas</h2><span class="section-rule"></span></div>
-      <div class="filters" id="techFilters" role="group" aria-label="Filtrar tecnologías" data-reveal>
-        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">Todas</button>
-        <button type="button" class="filter" data-filter="os" aria-pressed="false">OS</button>
-        <button type="button" class="filter" data-filter="frontend" aria-pressed="false">Frontend</button>
-        <button type="button" class="filter" data-filter="db" aria-pressed="false">BBDD</button>
-        <button type="button" class="filter" data-filter="net" aria-pressed="false">Redes &amp; Seguridad</button>
-        <button type="button" class="filter" data-filter="tools" aria-pressed="false">Tools &amp; DevOps</button>
-      </div>
-      <div class="tech-grid" id="techGrid">
-        <div class="card spot tech-card" data-cat="os" data-reveal><span class="tech-name">Linux</span><span class="tech-type">OS</span></div>
-        <div class="card spot tech-card" data-cat="os" data-reveal><span class="tech-name">Windows</span><span class="tech-type">OS</span></div>
-        <div class="card spot tech-card" data-cat="frontend" data-reveal><span class="tech-name">React + Vite</span><span class="tech-type">Frontend</span></div>
-        <div class="card spot tech-card" data-cat="frontend" data-reveal><span class="tech-name">HTML &amp; CSS</span><span class="tech-type">Frontend</span></div>
-        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">UML</span><span class="tech-type">Design</span></div>
-        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">SQLite</span><span class="tech-type">BBDD</span></div>
-        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">SQL Server Express</span><span class="tech-type">BBDD</span></div>
-        <div class="card spot tech-card" data-cat="db" data-reveal><span class="tech-name">MySQL</span><span class="tech-type">BBDD</span></div>
-        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Git</span><span class="tech-type">Tools</span></div>
-        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Docker</span><span class="tech-type">Tools</span></div>
-        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">SSH</span><span class="tech-type">Networking / Security</span></div>
-        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">TCP/IP</span><span class="tech-type">Networking</span></div>
-        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">Firewalls</span><span class="tech-type">Security</span></div>
-        <div class="card spot tech-card" data-cat="net" data-reveal><span class="tech-name">Port Scanning</span><span class="tech-type">Security</span></div>
-        <div class="card spot tech-card" data-cat="tools" data-reveal><span class="tech-name">Portainer</span><span class="tech-type">DevOps</span></div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="section-head"><span class="section-index">05.</span><h2>Proyectos</h2><span class="section-rule"></span></div>
-      <div class="projects-grid">
-        <article class="card spot project-card" data-reveal data-tilt>
-          <p class="project-overline">Desarrollo de Software</p>
-          <h3 class="project-title">Discord Audit Bot &amp; Dashboard DBMS</h3>
-          <div class="project-desc">
-            <p>Ecosistema Bot + Web integrado con Discord API. Dashboard con autenticación OAuth2 que permite a los usuarios visualizar auditorías en tiempo real de los servidores donde son administradores.</p>
-          </div>
-          <ul class="project-tech-list">
-            <li>Discord.js</li>
-            <li>Node.js</li>
-            <li>OAuth2</li>
-            <li>React</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
     <section class="section" id="courses">
-      <div class="section-head"><span class="section-index">05.1</span><h2>Cursos y Charlas</h2><span class="section-rule"></span></div>
+      <div class="section-head"><span class="section-index">05.2</span><h2>Cursos y Charlas</h2><span class="section-rule"></span></div>
       <ul class="courses-list">
         <li data-reveal>Zero Trust – SPIFFE / SPIRE</li>
         <li data-reveal>Infraestructura de nube (Google)</li>
@@ -1168,22 +1408,6 @@
         <li data-reveal>Digitalización de negocios</li>
         <li data-reveal>Descarbonización y Energía 4.0</li>
       </ul>
-    </section>
-
-    <section class="section" id="field-experience">
-      <div class="section-head"><span class="section-index">05.2</span><h2>Experiencia de Campo</h2><span class="section-rule"></span></div>
-      <div class="field-grid">
-        <div class="field-box" data-reveal>Instalación y configuración de sistemas operativos</div>
-        <div class="field-box" data-reveal>Soporte técnico y resolución de incidencias</div>
-        <div class="field-box" data-reveal>Armado, mantenimiento y diagnóstico de hardware</div>
-        <div class="field-box" data-reveal>Prácticas en laboratorio de ciberseguridad</div>
-        <div class="field-box" data-reveal>Administración básica de sistemas Linux</div>
-        <div class="field-box" data-reveal>Desarrollo de sistemas y aplicaciones</div>
-        <div class="field-box" data-reveal>Análisis y modelado de sistemas</div>
-        <div class="field-box" data-reveal>Análisis básico de redes y servicios</div>
-        <div class="field-box" data-reveal>Uso de herramientas de diagnóstico y seguridad</div>
-        <div class="field-box" data-reveal>Gestión de entornos virtualizados / contenedores</div>
-      </div>
     </section>
 
     <section class="section" id="sports">
@@ -1207,7 +1431,8 @@
     <section class="section contact" id="contact">
       <div class="section-head"><span class="section-index">06.</span><h2>Contacto</h2><span class="section-rule"></span></div>
       <p class="contact-intro" data-reveal>
-        Actualmente buscando nuevas oportunidades en el mundo de la Ciberseguridad y el desarrollo de sistemas.
+        Busco nuevas oportunidades en ciberseguridad, infraestructura y desarrollo de sistemas.
+        Escribime por email o LinkedIn.
       </p>
       <div class="contact-links">
         <a href="https://github.com/Juaniip" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" data-reveal data-magnetic>GitHub</a>
@@ -1279,7 +1504,7 @@
       // Link activo según la sección visible
       // (las sub-secciones marcan el link de su sección "padre")
       var navLinks = $('#navLinks a');
-      var navParent = { activities: 'experience', technologies: 'skills', courses: 'projects', 'field-experience': 'projects', sports: 'projects' };
+      var navParent = { technologies: 'skills', achievements: 'education', courses: 'education', sports: 'education' };
       function setActive(id) {
         id = navParent[id] || id;
         navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
@@ -1416,7 +1641,7 @@
       var nameSplit = A.splitText('#heroName', { chars: { wrap: 'clip' } });
       var heroItems = $('.hero-inner > *');
       utils.set(heroItems, { opacity: 1 });
-      utils.set(['.hero-prompt', '.hero-greeting', '#heroRole', '.hero-location', '.hero-actions'], { opacity: 0 });
+      utils.set(['.hero-prompt', '.hero-greeting', '#heroRole', '.hero-location', '.hero-highlights li', '.hero-actions'], { opacity: 0 });
 
       A.createTimeline({ defaults: { ease: 'outExpo' } })
         .add('.hero-prompt', { opacity: [0, 1], y: [12, 0], duration: 700 }, 150)
@@ -1435,7 +1660,8 @@
           innerHTML: A.scrambleText({ chars: 'A-Z0-9#$%&_', revealRate: 70, settleDuration: 400, cursor: '▌' })
         }, '<<')
         .add('.hero-location', { opacity: [0, 1], y: [10, 0], duration: 800 }, '<<+=500')
-        .add('.hero-actions', { opacity: [0, 1], y: [14, 0], duration: 800 }, '<<+=120')
+        .add('.hero-highlights li', { opacity: [0, 1], y: [10, 0], duration: 700, delay: stagger(90) }, '<<+=100')
+        .add('.hero-actions', { opacity: [0, 1], y: [14, 0], duration: 800 }, '<<+=200')
         .call(function () { ripple(Math.floor(grid.dots.length / 2)); }, '<<');
 
       animate('#scrollDot', { y: ['-100%', '250%'], duration: 1600, ease: 'inOutQuad', loop: true });
@@ -1501,6 +1727,15 @@
             d.animate.y(0, 900, 'outElastic(1, .6)');
           }, i * 40);
         });
+      });
+
+      /* ---------- LINSI-OS: barras de avance por fase ---------- */
+      animate('.ph-bar i', {
+        scaleX: function (el) { return [0, parseFloat(getComputedStyle(el).getPropertyValue('--p')) || 0]; },
+        duration: 1100,
+        ease: 'outExpo',
+        delay: stagger(90, { start: 300 }),
+        autoplay: onScroll({ target: '.phases', enter: 'bottom-=80 top', repeat: false })
       });
 
       /* ---------- Proyectos: tilt 3D ---------- */
